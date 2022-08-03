@@ -1,0 +1,3 @@
+# Adislog
+
+*NOT* usable yet.
