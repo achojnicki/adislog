@@ -30,5 +30,5 @@ class terminal:
                               cwd=cwd,
                               uid=uid)
         
-        print(msg,file=self._stdout if log_level!=LEVEL_FATAL and log_level!=LEVEL_ERROR else self._stderr)
+        print(msg,file=self._stdout if log_level!=LEVEL_FATAL or log_level!=LEVEL_ERROR else self._stderr)
 
