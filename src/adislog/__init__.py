@@ -11,6 +11,8 @@ from pprint import pformat
 from time import strftime
 
 import sys
+import traceback
+import IPython
 
 class adislog(adislog_methods):
     def __init__(self,
@@ -21,11 +23,11 @@ class adislog(adislog_methods):
                  use_code_context:bool=False,
                  init_message:str="adislog module initializated.",
                  replace_except_hook:bool=True,
-                 backends:list or array=['file_plain','terminal_table'],
+                 backends:list or array=['file_plain','terminal_table'], 
                  **kwargs):
         """Time format have to be format of the time.strftime function.
 log_file:str                 - Specifies the path of the log file,
-privacy:bool                 - Set to true log the caller of the function with the arguments. Name of the function otherwise.2h
+privacy:bool                 - Set to true log the caller of the function with the arguments. Name of the function otherwise.
 debug:bool                   - Sets the condition to store the debug messages or not.
 use_code_context:bool        - Scap the code from the frame of the inspect module to get the multiline functions declaration. Used only if the privacy is set to True.
 init_message:str             - Message showed after initialisation of the adislog,
@@ -83,6 +85,7 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
             if type(log_item) is str:
                 message=log_item
             
+            #TODO move the formatting of the text to the backends
             elif type(log_item) is tuple or type(log_item) is list:
                 message=pformat(log_item)
                 
@@ -91,31 +94,38 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
             
             elif type(log_item) is int:
                 message=log_item
-                
+            #end TODO
+            
             time=strftime(self._time_format)
             caller_info=self._inspect.get_caller()
             process_details=get_process_details()
                             
-            
             msg={"log_level":log_level,
                  "message":message, 
                  "datetime":time, 
                  **caller_info, 
                  **process_details}
             
-            #if self._exception_data:
-                #msg['excpt_data']=[parse_frame(a) for a in self._exception_data] 
+            if self._exception_data:
+                msg['excpt_data']=[parse_frame(a) for a in self._exception_data] 
                 
             
             for backend in self._backends:
                 backend.emit(**msg)
 
-    def _except(self, etype,value, tb):
+    def _parse_tb(self, tb):
         self._exception_data.append(tb.tb_frame)
-        if tb.tb_next:
-            self._except(tb.tb_next)
-        else:
-            self.fatal("Exception %s occured!" % value)
 
-            sys.exit(1)
+    def _except(self, etype,value, tb):
+        #TODO: use the value: traceback.format_exception(value)
+
+        while True:
+            self._parse_tb(tb)
+            if tb.tb_next:
+                tb=tb_next
+            else:
+                break
+            
+        self.fatal("Exception %s occured!" % value)
+        sys.exit(1)
         

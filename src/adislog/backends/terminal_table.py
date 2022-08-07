@@ -4,6 +4,7 @@ from tabulate import tabulate
 from colored import stylize, fg, bg, attr
 from sys import stdout, stderr
 from os import get_terminal_size
+from pprint import pformat, pprint
 
 class terminal_table:
     def __init__(self):
@@ -12,7 +13,6 @@ class terminal_table:
         
         self._spacing=7
         self._first_col=11
-        
         
     def _get_line_breaker(self):
         return get_terminal_size().columns-self._first_col-self._spacing
@@ -24,6 +24,9 @@ class terminal_table:
                 buff+="\n"
             buff+=letter
         return buff
+    
+    def _get_tb_table(self,tb):
+        pass
     
     def emit(self,
              message:str,
@@ -52,21 +55,9 @@ class terminal_table:
             [stylize("Message",attr("bold")),self._break_line(message) if len(message)>self._get_line_breaker() else message]
             ]
         
-        if excpt_data:
-            d=""
-            for excpt_item in excpt_data:
-                excpt_table_data=[
-                    [stylize("attr",attr("bold")),stylize("",attr("bold"))],
-                    ]
-                for frame in excpt_item:
-                    excpt_table_data.append([stylize(frame,attr("bold")),excpt_item[frame]])
-                excpt_table_data.append(excpt_table_data)
-                
-                excpt_table=tabulate(excpt_table_data,tablefmt="fancy_grid")
-
-                d+=str(excpt_table)+"\n"
-            table_data.append([stylize("Exception Details",attr("bold")),d])
-            
+        #if excpt_data:
+            #in excpt_data:
+                #pprint(excpt_item)
         
         msg=tabulate(table_data,tablefmt="fancy_grid")
         
