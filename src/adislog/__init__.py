@@ -3,7 +3,7 @@
 from .methods import adislog_methods 
 from .inspect import inspect
 from .process import get_process_details
-from .backends import terminal, terminal_colorful, terminal_table, file_plain
+from .backends import terminal, terminal_colorful, terminal_table, file_plain, rabbitmq_emiter
 from .traceback import parse_frame
 from .exceptions import EXCEPTION_BACKEND_DO_NOT_EXISTS
 
@@ -12,7 +12,7 @@ from time import strftime
 
 import sys
 import traceback
-import IPython
+#import IPython
 
 class adislog(adislog_methods):
     def __init__(self,
@@ -23,13 +23,17 @@ class adislog(adislog_methods):
                  use_code_context:bool=False,
                  init_message:str="adislog module initializated.",
                  replace_except_hook:bool=True,
-                 backends:list or array=['file_plain','terminal_table'], 
+                 backends:list or array=['file_plain','terminal_table'],
+                 rabbitmq_host=None,
+                 rabbitmq_port=None,
+                 rabbitmq_credentials=None,
+                 rabbitmq_queue='adislog',
                  **kwargs):
         """Time format have to be format of the time.strftime function.
-log_file:str                 - Specifies the path of the log file,
+log_file:str                 - Specify the path of the log file,
 privacy:bool                 - Set to true log the caller of the function with the arguments. Name of the function otherwise.
 debug:bool                   - Sets the condition to store the debug messages or not.
-use_code_context:bool        - Scap the code from the frame of the inspect module to get the multiline functions declaration. Used only if the privacy is set to True.
+use_code_context:bool        - Scan the code from the frame of the inspect module to get the multiline functions declaration. Used only if the privacy is set to True.
 init_message:str             - Message showed after initialisation of the adislog,
 backends:list or array       - List is a list with enabled backends. Backends:
     file_plain        - Saves the log to the spewcified file as a plain text.
@@ -52,8 +56,11 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
         
         self._inspect=inspect(privacy=self._privacy, use_code_context=use_code_context)
         
-        o=None        
+        
+        
         for a in backends:
+            o=None        
+            
             if a == 'terminal':
                 o=terminal.terminal()
                 
@@ -65,6 +72,15 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
                 
             elif a == 'file_plain':
                 o=file_plain.file_plain(log_file=self._log_file)
+            
+            elif a == 'rabbitmq_emitter':
+                o=rabbitmq_emiter.rabbitmq_emiter(
+                    rabbitmq_host=rabbitmq_host,
+                    rabbitmq_port=rabbitmq_port,
+                    rabbitmq_credentials=rabbitmq_credentials,
+                    rabbitmq_queue=rabbitmq_queue
+                    )
+            
             
             else:
                 raise EXCEPTION_BACKEND_DO_NOT_EXISTS
@@ -94,6 +110,11 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
             
             elif type(log_item) is int:
                 message=log_item
+                
+            elif type(log_item) is bytes or type(log_item) is bytearray:
+                message=log_item.decode('utf-8')
+            else:
+                message=str(log_item) 
             #end TODO
             
             time=strftime(self._time_format)
@@ -122,7 +143,7 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
         while True:
             self._parse_tb(tb)
             if tb.tb_next:
-                tb=tb_next
+                tb=tb.tb_next
             else:
                 break
             

@@ -17,9 +17,8 @@ class terminal_colorful:
              log_level:int,
              pid:int,
              ppid:int,
-             cwd:str,
-             uid:int):
-        print(1)
+             cwd:str):
+
         msg_data={
         "datetime":datetime,
         "filename":filename,
@@ -29,8 +28,7 @@ class terminal_colorful:
         "message":stylize(message,TERMINAL_COLORS[log_level]),
         "pid":pid,
         "ppid":ppid,
-        "cwd":cwd,
-        "uid":uid}
+        "cwd":cwd}
         
         msg=MSG_FORMAT.format(**msg_data)
         

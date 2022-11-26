@@ -1,7 +1,10 @@
 from ..constants import MSG_FORMAT, LOG_LEVELS
 
 class file_plain:
-    def __init__(self,log_file, **kwargs):
+    def __init__(self,
+                 log_file,
+                 **kwargs
+                 ):
         self._log_file=log_file
         
     def emit(self,
@@ -14,7 +17,6 @@ class file_plain:
              pid:int,
              ppid:int,
              cwd:str,
-             uid:int,
              excpt_data=None):
         
         with open(self._log_file,'a') as log_file:
@@ -26,8 +28,7 @@ class file_plain:
                                   log_level=LOG_LEVELS[log_level],
                                   pid=pid,
                                   ppid=ppid,
-                                  cwd=cwd,
-                                  uid=uid)
+                                  cwd=cwd,)
             
             log_file.write(msg)
         

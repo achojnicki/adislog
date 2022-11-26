@@ -16,8 +16,7 @@ class terminal:
              log_level:int,
              pid:int,
              ppid:int,
-             cwd:str,
-             uid:int):
+             cwd:str):
         
         msg=MSG_FORMAT.format(message=message,
                               datetime=datetime,
@@ -27,8 +26,7 @@ class terminal:
                               log_level=LOG_LEVELS[log_level],
                               pid=pid,
                               ppid=ppid,
-                              cwd=cwd,
-                              uid=uid)
+                              cwd=cwd)
         
         print(msg,file=self._stdout if log_level!=LEVEL_FATAL or log_level!=LEVEL_ERROR else self._stderr)
 

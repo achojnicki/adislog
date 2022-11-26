@@ -38,7 +38,6 @@ class terminal_table:
              pid:int,
              ppid:int,
              cwd:str,
-             uid:int,
              excpt_data=None):
         
         table_data=[
@@ -50,7 +49,6 @@ class terminal_table:
             [stylize("Line number",attr("bold")), str(line_number)],
             [stylize("PID",attr("bold")),pid],
             [stylize("PPID",attr("bold")),ppid],
-            [stylize("UID",attr("bold")),uid],
             [stylize("CWD",attr("bold")),self._break_line(cwd) if len(cwd)> self._get_line_breaker() else cwd],
             [stylize("Message",attr("bold")),self._break_line(message) if len(message)>self._get_line_breaker() else message]
             ]
