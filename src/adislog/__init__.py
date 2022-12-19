@@ -20,20 +20,18 @@ class adislog(adislog_methods):
                  log_file:str=None,
                  privacy:bool=True,
                  debug:bool=False,
-                 use_code_context:bool=False,
                  init_message:str="adislog module initializated.",
                  replace_except_hook:bool=True,
                  backends:list or array=['file_plain','terminal_table'],
                  rabbitmq_host=None,
                  rabbitmq_port=None,
                  rabbitmq_credentials=None,
-                 rabbitmq_queue='adislog',
+                 rabbitmq_queue='logs',
                  **kwargs):
         """Time format have to be format of the time.strftime function.
 log_file:str                 - Specify the path of the log file,
 privacy:bool                 - Set to true log the caller of the function with the arguments. Name of the function otherwise.
 debug:bool                   - Sets the condition to store the debug messages or not.
-use_code_context:bool        - Scan the code from the frame of the inspect module to get the multiline functions declaration. Used only if the privacy is set to True.
 init_message:str             - Message showed after initialisation of the adislog,
 backends:list or array       - List is a list with enabled backends. Backends:
     file_plain        - Saves the log to the spewcified file as a plain text.
@@ -48,13 +46,12 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
         self._log_file='log.log' if log_file is None else log_file
         self._privacy=privacy
         self._debug=debug
-        self._use_code_context=use_code_context
         self._init_message=init_message
         self._replace_except_hook=replace_except_hook
         
         self._exception_data=[]
         
-        self._inspect=inspect(privacy=self._privacy, use_code_context=use_code_context)
+        self._inspect=inspect(privacy=self._privacy)
         
         
         

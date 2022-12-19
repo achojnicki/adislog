@@ -1,3 +1,4 @@
+from pickle import TRUE
 from ..constants import MSG_FORMAT, LOG_LEVELS
 
 from json import dumps
@@ -27,7 +28,9 @@ class rabbitmq_emiter:
         
         self._rabbitmq_channel=self._connection.channel()
         
-        self._rabbitmq_channel.queue_declare(queue=rabbitmq_queue)
+        self._rabbitmq_channel.queue_declare(queue=rabbitmq_queue,
+                                             durable=True
+        )
         
     def emit(self,
              message:str,
