@@ -17,7 +17,7 @@ class rabbitmq_emiter:
          
         self._rabbitmq_host=rabbitmq_host
         self._rabbitmq_port=rabbitmq_port
-        self._rabbitmq_user=rabbitmq_user,
+        self._rabbitmq_user=rabbitmq_user
         self._rabbitmq_passwd=rabbitmq_passwd
         self._rabbitmq_queue=rabbitmq_queue
     
