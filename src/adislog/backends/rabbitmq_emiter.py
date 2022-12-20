@@ -23,7 +23,7 @@ class rabbitmq_emiter:
         self._rabbitmq_connection=BlockingConnection(
             ConnectionParameters(
                 host=self._rabbitmq_host,
-                port=self_rabbitmq_port,
+                port=self._rabbitmq_port,
                 credentials=self._rabbitmq_credentials
                 ))
         
