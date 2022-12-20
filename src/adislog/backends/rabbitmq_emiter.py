@@ -10,13 +10,15 @@ class rabbitmq_emiter:
                  rabbitmq_host,
                  rabbitmq_port,
                  rabbitmq_queue,
-                 rabbitmq_credentials,
+                 rabbitmq_user,
+                 rabbitmq_passwd,
                  **kwargs
                  ):
          
         self._rabbitmq_host=rabbitmq_host
         self._rabbitmq_port=rabbitmq_port
-        self._rabbitmq_credentials=rabbitmq_credentials,
+        self._rabbitmq_user=rabbitmq_user,
+        self._rabbitmq_passwd=rabbitmq_passwd,
         self._rabbitmq_queue=rabbitmq_queue
     
     def _open_rabbitmq_connection(self):
@@ -24,7 +26,10 @@ class rabbitmq_emiter:
             ConnectionParameters(
                 host=self._rabbitmq_host,
                 port=self._rabbitmq_port,
-                credentials=self._rabbitmq_credentials
+                credentials=PlainCredentials(
+                    self._rabbitmq_user,
+                    self._rabbitmq_passwd
+                    )
                 ))
         
         self._rabbitmq_channel=self._connection.channel()
