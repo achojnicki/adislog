@@ -3396,3 +3396,54 @@ Sed ut felis a libero vestibulum gravida. Vestibulum augue neque, lobortis ac qu
 
 
 Tue 02:Aug:2022 21:40:27 FATAL:/usr/lib/python3.10/site-packages/adislog/__init__.py:118 self.fatal("Exception %s occured!" % value) PID:17805 PPID:28258 CWD:/home/adrian/dev/adislog/examples UID:1000 Exception division by zero occured!
+Tue 11:Oct:2022 21:10:29 INFO:C:\Users\arjel\AppData\Local\Programs\Python\Python310\lib\site-packages\adislog\__init__.py:81 self.info(self._init_message) PID:27876 PPID:11248 CWD:C:\Dev\adislog\examples adislog module initializated.
+Tue 11:Oct:2022 21:10:29 WARNING:C:\Dev\adislog\examples\example_colorful.py:9 log.warning('This is warning message') PID:27876 PPID:11248 CWD:C:\Dev\adislog\examples This is warning message
+Tue 11:Oct:2022 21:10:29 FATAL:C:\Dev\adislog\examples\example_colorful.py:10 log.warning('This is warning message') PID:27876 PPID:11248 CWD:C:\Dev\adislog\examples ['list', 'of', 'items', 'in', 'list']
+Tue 11:Oct:2022 21:10:29 DEBUG:C:\Dev\adislog\examples\example_colorful.py:5 log.debug("I'm called from the function") PID:27876 PPID:11248 CWD:C:\Dev\adislog\examples I'm called from the function
+Tue 11:Oct:2022 21:10:29 INFO:C:\Dev\adislog\examples\func_from_ext_file.py:2 log.info(text) PID:27876 PPID:11248 CWD:C:\Dev\adislog\examples Me was called from the function imported from other file
+Tue 11:Oct:2022 21:10:29 SUCCESS:C:\Dev\adislog\examples\example_colorful.py:14 example_func() PID:27876 PPID:11248 CWD:C:\Dev\adislog\examples SUCCESS
+Tue 11:Oct:2022 21:10:29 WARNING:C:\Dev\adislog\examples\example_colorful.py:16 log.warning("""test
+test
+test""") PID:27876 PPID:11248 CWD:C:\Dev\adislog\examples test
+test
+test
+Tue 11:Oct:2022 21:10:29 INFO:C:\Dev\adislog\examples\example_colorful.py:20 log.warning("""test
+test
+test""") PID:27876 PPID:11248 CWD:C:\Dev\adislog\examples {'example': 'example', 'example2': 'example2'}
+Tue 11:Oct:2022 21:10:29 SUCCESS:C:\Dev\adislog\examples\example_colorful.py:21 log.info({"example":"example","example2":"example2"}) PID:27876 PPID:11248 CWD:C:\Dev\adislog\examples Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales ligula rhoncus, finibus justo ut, condimentum ex. Nam ac lacus consequat, pulvinar eros ac, sodales diam. Donec sodales ante ut facilisis interdum. Praesent condimentum egestas dolor, id blandit purus suscipit vel. Ut non quam at leo ornare auctor non a mi. Fusce ut massa urna. Proin eget nunc mollis, molestie urna quis, fringilla erat. Sed scelerisque tincidunt risus vel placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin elementum sollicitudin eros eget convallis.
+
+Morbi felis sapien, pulvinar vitae pretium eget, sodales at neque. Aliquam orci elit, vestibulum et ligula id, cursus malesuada lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In felis lectus, sollicitudin quis iaculis eget, tincidunt vel ligula. Nunc consectetur nunc et nisl volutpat sollicitudin. In et elementum ligula, a fringilla justo. Mauris accumsan eleifend nisi, ac sollicitudin nisl facilisis tristique. Etiam tincidunt purus eu sapien posuere, sed maximus massa maximus. Aliquam erat volutpat. Vivamus vitae lobortis nisi.
+
+Sed viverra, libero in dignissim imperdiet, mi nulla gravida sem, et bibendum nulla lorem et tortor. Aenean dictum sed ante vel semper. Pellentesque consequat felis vel rutrum efficitur. Nunc pellentesque sollicitudin mauris sit amet facilisis. Integer sed dolor eget neque fringilla rutrum. Suspendisse mattis ullamcorper eros id aliquet. Ut lobortis arcu in laoreet ornare. Curabitur scelerisque blandit massa, vitae maximus lectus congue ut. In ac faucibus orci. Vestibulum euismod ultricies lectus sit amet varius.
+
+Etiam urna sapien, elementum eget rutrum at, convallis in neque. Pellentesque ac justo eu tortor eleifend aliquet id dapibus ipsum. Donec in lobortis est, vitae cursus ante. Pellentesque pellentesque sapien vitae purus volutpat imperdiet a blandit erat. Nulla facilisi. Donec dictum dictum lacus ut semper. Pellentesque vel pulvinar libero, at laoreet enim. Duis tempus porttitor ante nec fermentum.
+
+Sed ut felis a libero vestibulum gravida. Vestibulum augue neque, lobortis ac quam et, interdum malesuada neque. Morbi at leo sit amet metus eleifend congue sit amet et metus. Sed magna nibh, aliquet tincidunt lectus quis, sollicitudin congue tellus. Aliquam ligula sem, pretium euismod elementum non, condimentum sit amet arcu. Pellentesque condimentum ex enim, at vestibulum urna maximus eu. Aliquam elementum, nisl vel consectetur viverra, sapien orci venenatis tellus, consectetur pretium elit orci at velit. Integer sagittis sapien metus, nec porttitor mi consectetur non. Suspendisse vel metus quis sem rutrum laoreet. Sed molestie egestas commodo.
+
+
+Tue 11:Oct:2022 21:10:33 INFO:C:\Users\arjel\AppData\Local\Programs\Python\Python310\lib\site-packages\adislog\__init__.py:81 self.info(self._init_message) PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples adislog module initializated.
+Tue 11:Oct:2022 21:10:33 WARNING:C:\Dev\adislog\examples\example_table.py:9 log.warning('This is warning message') PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples This is warning message
+Tue 11:Oct:2022 21:10:33 FATAL:C:\Dev\adislog\examples\example_table.py:10 log.warning('This is warning message') PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples ['list', 'of', 'items', 'in', 'list']
+Tue 11:Oct:2022 21:10:33 DEBUG:C:\Dev\adislog\examples\example_table.py:5 log.debug("I'm called from the function") PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples I'm called from the function
+Tue 11:Oct:2022 21:10:33 INFO:C:\Dev\adislog\examples\func_from_ext_file.py:2 log.info(text) PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples Me was called from the function imported from other file
+Tue 11:Oct:2022 21:10:33 SUCCESS:C:\Dev\adislog\examples\example_table.py:14 example_func() PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples SUCCESS
+Tue 11:Oct:2022 21:10:33 WARNING:C:\Dev\adislog\examples\example_table.py:16 log.warning("""test
+test
+test""") PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples test
+test
+test
+Tue 11:Oct:2022 21:10:33 INFO:C:\Dev\adislog\examples\example_table.py:20 log.warning("""test
+test
+test""") PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples {'example': 'example', 'example2': 'example2'}
+Tue 11:Oct:2022 21:10:33 SUCCESS:C:\Dev\adislog\examples\example_table.py:21 log.info({"example":"example","example2":"example2"}) PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales ligula rhoncus, finibus justo ut, condimentum ex. Nam ac lacus consequat, pulvinar eros ac, sodales diam. Donec sodales ante ut facilisis interdum. Praesent condimentum egestas dolor, id blandit purus suscipit vel. Ut non quam at leo ornare auctor non a mi. Fusce ut massa urna. Proin eget nunc mollis, molestie urna quis, fringilla erat. Sed scelerisque tincidunt risus vel placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin elementum sollicitudin eros eget convallis.
+
+Morbi felis sapien, pulvinar vitae pretium eget, sodales at neque. Aliquam orci elit, vestibulum et ligula id, cursus malesuada lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In felis lectus, sollicitudin quis iaculis eget, tincidunt vel ligula. Nunc consectetur nunc et nisl volutpat sollicitudin. In et elementum ligula, a fringilla justo. Mauris accumsan eleifend nisi, ac sollicitudin nisl facilisis tristique. Etiam tincidunt purus eu sapien posuere, sed maximus massa maximus. Aliquam erat volutpat. Vivamus vitae lobortis nisi.
+
+Sed viverra, libero in dignissim imperdiet, mi nulla gravida sem, et bibendum nulla lorem et tortor. Aenean dictum sed ante vel semper. Pellentesque consequat felis vel rutrum efficitur. Nunc pellentesque sollicitudin mauris sit amet facilisis. Integer sed dolor eget neque fringilla rutrum. Suspendisse mattis ullamcorper eros id aliquet. Ut lobortis arcu in laoreet ornare. Curabitur scelerisque blandit massa, vitae maximus lectus congue ut. In ac faucibus orci. Vestibulum euismod ultricies lectus sit amet varius.
+
+Etiam urna sapien, elementum eget rutrum at, convallis in neque. Pellentesque ac justo eu tortor eleifend aliquet id dapibus ipsum. Donec in lobortis est, vitae cursus ante. Pellentesque pellentesque sapien vitae purus volutpat imperdiet a blandit erat. Nulla facilisi. Donec dictum dictum lacus ut semper. Pellentesque vel pulvinar libero, at laoreet enim. Duis tempus porttitor ante nec fermentum.
+
+Sed ut felis a libero vestibulum gravida. Vestibulum augue neque, lobortis ac quam et, interdum malesuada neque. Morbi at leo sit amet metus eleifend congue sit amet et metus. Sed magna nibh, aliquet tincidunt lectus quis, sollicitudin congue tellus. Aliquam ligula sem, pretium euismod elementum non, condimentum sit amet arcu. Pellentesque condimentum ex enim, at vestibulum urna maximus eu. Aliquam elementum, nisl vel consectetur viverra, sapien orci venenatis tellus, consectetur pretium elit orci at velit. Integer sagittis sapien metus, nec porttitor mi consectetur non. Suspendisse vel metus quis sem rutrum laoreet. Sed molestie egestas commodo.
+
+
+Tue 11:Oct:2022 21:10:33 FATAL:C:\Users\arjel\AppData\Local\Programs\Python\Python310\lib\site-packages\adislog\__init__.py:129 self.fatal("Exception %s occured!" % value) PID:3404 PPID:11248 CWD:C:\Dev\adislog\examples Exception division by zero occured!

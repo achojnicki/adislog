@@ -41,7 +41,7 @@ class rabbitmq_emiter:
         
         self._rabbitmq_channel=self._rabbitmq_connection.channel()
 
-    def close_rabbitmq_connection(self):
+    def _close_rabbitmq_connection(self):
         self._rabbitmq_channel.close()
         self._rabbitmq_connection.close()
         
