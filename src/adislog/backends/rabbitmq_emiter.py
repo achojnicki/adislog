@@ -22,9 +22,9 @@ class rabbitmq_emiter:
     def _open_rabbitmq_connection(self):
         self._rabbitmq_connection=BlockingConnection(
             ConnectionParameters(
-                host=rabbitmq_host,
-                port=rabbitmq_port,
-                credentials=rabbitmq_credentials
+                host=self._rabbitmq_host,
+                port=self_rabbitmq_port,
+                credentials=self._rabbitmq_credentials
                 ))
         
         self._rabbitmq_channel=self._connection.channel()
