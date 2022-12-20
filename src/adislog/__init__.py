@@ -25,7 +25,8 @@ class adislog(adislog_methods):
                  backends:list or array=['file_plain','terminal_table'],
                  rabbitmq_host=None,
                  rabbitmq_port=None,
-                 rabbitmq_credentials=None,
+                 rabbitmq_user=None,
+                 rabbitmq_passwd=None,
                  rabbitmq_queue='logs',
                  **kwargs):
         """Time format have to be format of the time.strftime function.
@@ -74,7 +75,8 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
                 o=rabbitmq_emiter.rabbitmq_emiter(
                     rabbitmq_host=rabbitmq_host,
                     rabbitmq_port=rabbitmq_port,
-                    rabbitmq_credentials=rabbitmq_credentials,
+                    rabbitmq_user=rabbitmq_user,
+                    rabbitmq_passwd=rabbitmq_passwd,
                     rabbitmq_queue=rabbitmq_queue
                     )
             
