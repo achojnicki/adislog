@@ -18,8 +18,9 @@ class rabbitmq_emiter:
         self._rabbitmq_port=rabbitmq_port
         self._rabbitmq_credentials=rabbitmq_credentials,
         self._rabbitmq_queue=rabbitmq_queue
-        
-        self._connection=BlockingConnection(
+    
+    def _open_rabbitmq_connection(self):
+        self._rabbitmq_connection=BlockingConnection(
             ConnectionParameters(
                 host=rabbitmq_host,
                 port=rabbitmq_port,
@@ -27,10 +28,10 @@ class rabbitmq_emiter:
                 ))
         
         self._rabbitmq_channel=self._connection.channel()
-        
-        self._rabbitmq_channel.queue_declare(queue=rabbitmq_queue,
-                                             durable=True
-        )
+
+    def close_rabbitmq_connection(self):
+        self._rabbitmq_channel.close()
+        self._rabbitmq_connection.close()
         
     def emit(self,
              message:str,
@@ -57,11 +58,12 @@ class rabbitmq_emiter:
             }
         msg=dumps(msg)
 
+        self._open_rabbitmq_connection()
         self._rabbitmq_channel.basic_publish(
             exchange="",
             routing_key=self._rabbitmq_queue,
             body=msg
         )
-        
+        self._close_rabbitmq_connection()
     
         
