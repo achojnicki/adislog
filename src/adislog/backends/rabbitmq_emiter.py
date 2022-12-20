@@ -1,4 +1,3 @@
-from pickle import TRUE
 from ..constants import MSG_FORMAT, LOG_LEVELS
 
 from json import dumps
@@ -6,6 +5,14 @@ from pika import BlockingConnection, ConnectionParameters, PlainCredentials
 
 
 class rabbitmq_emiter:
+    _rabbitmq_connection=None
+    _rabbitmq_channel=None
+
+    _rabbitmq_host=None
+    _rabbitmq_port=None
+    _rabbitmq_user=None
+    _rabbitmq_passwd=None
+
     def __init__(self,
                  rabbitmq_host,
                  rabbitmq_port,
@@ -32,7 +39,7 @@ class rabbitmq_emiter:
                     )
                 ))
         
-        self._rabbitmq_channel=self._connection.channel()
+        self._rabbitmq_channel=self._rabbitmq_connection.channel()
 
     def close_rabbitmq_connection(self):
         self._rabbitmq_channel.close()
