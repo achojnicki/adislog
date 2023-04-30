@@ -12,7 +12,6 @@ from time import strftime
 
 import sys
 import traceback
-#import IPython
 
 class adislog(adislog_methods):
     def __init__(self,
@@ -112,6 +111,7 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
                 
             elif type(log_item) is bytes or type(log_item) is bytearray:
                 message=log_item.decode('utf-8')
+
             else:
                 message=str(log_item) 
             #end TODO
@@ -129,9 +129,12 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
             if self._exception_data:
                 msg['excpt_data']=[parse_frame(a) for a in self._exception_data] 
                 
-            
-            for backend in self._backends:
-                backend.emit(**msg)
+            self._emit_to_backends(msg)
+
+
+    def _emit_to_backends(self, msg):
+        for backend in self._backends:
+            backend.emit(**msg)
 
     def _parse_tb(self, tb):
         self._exception_data.append(tb.tb_frame)
