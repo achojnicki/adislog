@@ -7,28 +7,32 @@ class file_plain:
                  ):
         self._log_file=log_file
         
-    def emit(self,
-             message:str,
-             datetime:str,
-             filename:str,
-             function: str,
-             line_number:int,
-             log_level:int,
-             pid:int,
-             ppid:int,
-             cwd:str,
-             excpt_data=None):
+    def emit(
+        self,
+        project_name:str,
+        message:str,
+        datetime:str,
+        filename:str,
+        function: str,
+        line_number:int,
+        log_level:int,
+        pid:int,
+        ppid:int,
+        cwd:str,
+        excpt_data=None):
         
         with open(self._log_file,'a') as log_file:
-            msg=MSG_FORMAT.format(message=message,
-                                  datetime=datetime,
-                                  filename=filename,
-                                  function=function,
-                                  line_number=line_number,
-                                  log_level=LOG_LEVELS[log_level],
-                                  pid=pid,
-                                  ppid=ppid,
-                                  cwd=cwd,)
+            msg=MSG_FORMAT.format(
+                project_name=project_name,
+                message=message,
+                datetime=datetime,
+                filename=filename,
+                function=function,
+                line_number=line_number,
+                log_level=LOG_LEVELS[log_level],
+                pid=pid,
+                ppid=ppid,
+                cwd=cwd)
             
             log_file.write(msg)
         

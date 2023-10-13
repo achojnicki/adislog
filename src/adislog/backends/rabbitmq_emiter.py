@@ -46,6 +46,7 @@ class rabbitmq_emiter:
         self._rabbitmq_connection.close()
         
     def emit(self,
+             project_name:str,
              message:str,
              datetime:str,
              filename:str,
@@ -58,6 +59,7 @@ class rabbitmq_emiter:
              excpt_data=None):
         
         msg={
+            "project_name":project_name,
             'message':message,
             'datetime':datetime,
             'filename':filename,

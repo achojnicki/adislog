@@ -28,25 +28,28 @@ class terminal_table:
     def _get_tb_table(self,tb):
         pass
     
-    def emit(self,
-             message:str,
-             datetime:str,
-             filename:str,
-             function: str,
-             line_number:int,
-             log_level:int,
-             pid:int,
-             ppid:int,
-             cwd:str,
-             excpt_data=None):
+    def emit(
+        self,
+        project_name:str,
+        message:str,
+        datetime:str,
+        filename:str,
+        function: str,
+        line_number:int,
+        log_level:int,
+        pid:int,
+        ppid:int,
+        cwd:str,
+        excpt_data=None):
         
         table_data=[
             [stylize("Title",attr("bold")),stylize("Value",attr("bold"))],
-            [stylize("Date time",attr("bold")),datetime],
+            [stylize("Project Name",attr("bold")), project_name],
+            [stylize("Date Time",attr("bold")),datetime],
             [stylize("Log Level",attr("bold")),stylize(LOG_LEVELS[log_level],TERMINAL_COLORS[log_level])],
             [stylize("File",attr("bold")),self._break_line(filename) if len(filename)>self._get_line_breaker() else filename],
             [stylize("Function",attr("bold")),self._break_line(function) if len(function)>self._get_line_breaker() else function],
-            [stylize("Line number",attr("bold")), str(line_number)],
+            [stylize("Line Number",attr("bold")), str(line_number)],
             [stylize("PID",attr("bold")),pid],
             [stylize("PPID",attr("bold")),ppid],
             [stylize("CWD",attr("bold")),self._break_line(cwd) if len(cwd)> self._get_line_breaker() else cwd],

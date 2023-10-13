@@ -8,16 +8,17 @@ class terminal_colorful:
         self._stderr=stderr
         self._stdout=stdout
     
-    def emit(self,
-             message:str,
-             datetime:str,
-             filename:str,
-             function: str,
-             line_number:int,
-             log_level:int,
-             pid:int,
-             ppid:int,
-             cwd:str):
+    def emit(
+        self,
+        message:str,
+        datetime:str,
+        filename:str,
+        function: str,
+        line_number:int,
+        log_level:int,
+        pid:int,
+        ppid:int,
+        cwd:str):
 
         msg_data={
         "datetime":datetime,

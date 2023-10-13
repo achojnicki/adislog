@@ -3,7 +3,6 @@
 from .methods import adislog_methods 
 from .inspect import inspect
 from .process import get_process_details
-from .backends import terminal, terminal_colorful, terminal_table, file_plain, rabbitmq_emiter
 from .traceback import parse_frame
 from .exceptions import EXCEPTION_BACKEND_DO_NOT_EXISTS
 
@@ -20,8 +19,9 @@ class adislog(adislog_methods):
                  privacy:bool=True,
                  debug:bool=False,
                  init_message:str="adislog module initializated.",
-                 replace_except_hook:bool=True,
+                 replace_except_hook:bool=False,
                  backends:list or array=['file_plain','terminal_table'],
+                 project_name:str="Default",
                  rabbitmq_host=None,
                  rabbitmq_port=None,
                  rabbitmq_user=None,
@@ -42,13 +42,13 @@ backends:list or array       - List is a list with enabled backends. Backends:
 Note that all of the console backends writes the fatal messages to the STDERR pipe.
 """
         self._backends=[]
-        self._time_format="%a %d:%b:%Y %H:%M:%S" if time_format is None else time_format
+        self._time_format="%d/%m/%Y %H:%M:%S" if time_format is None else time_format
         self._log_file='log.log' if log_file is None else log_file
         self._privacy=privacy
         self._debug=debug
         self._init_message=init_message
         self._replace_except_hook=replace_except_hook
-        
+        self._project_name=project_name
         self._exception_data=[]
         
         self._inspect=inspect(privacy=self._privacy)
@@ -59,18 +59,24 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
             o=None        
             
             if a == 'terminal':
+                from .backends import terminal
+
                 o=terminal.terminal()
                 
             elif a == 'terminal_colorful':
+                from .backends import terminal_colorful
                 o=terminal_colorful.terminal_colorful()
                 
             elif a == 'terminal_table':
+                from .backends import terminal_table
                 o=terminal_table.terminal_table()
                 
             elif a == 'file_plain':
+                from .backends import file_plain
                 o=file_plain.file_plain(log_file=self._log_file)
             
             elif a == 'rabbitmq_emitter':
+                from .backends import rabbitmq_emiter
                 o=rabbitmq_emiter.rabbitmq_emiter(
                     rabbitmq_host=rabbitmq_host,
                     rabbitmq_port=rabbitmq_port,
@@ -99,7 +105,6 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
             if type(log_item) is str:
                 message=log_item
             
-            #TODO move the formatting of the text to the backends
             elif type(log_item) is tuple or type(log_item) is list:
                 message=pformat(log_item)
                 
@@ -114,18 +119,20 @@ Note that all of the console backends writes the fatal messages to the STDERR pi
 
             else:
                 message=str(log_item) 
-            #end TODO
             
             time=strftime(self._time_format)
             caller_info=self._inspect.get_caller()
             process_details=get_process_details()
                             
-            msg={"log_level":log_level,
-                 "message":message, 
-                 "datetime":time, 
-                 **caller_info, 
-                 **process_details}
-            
+            msg={
+            "project_name": self._project_name,
+            "log_level":log_level,
+            "message":message, 
+            "datetime":time, 
+            **caller_info, 
+            **process_details
+            }
+
             if self._exception_data:
                 msg['excpt_data']=[parse_frame(a) for a in self._exception_data] 
                 
